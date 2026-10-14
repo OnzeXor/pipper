@@ -1,0 +1,18 @@
+[Desktop Entry]
+Type=Application
+Name=Pipper
+Comment=Use seu celular como uma segunda tela no Hyprland
+Exec=pipper
+Icon=pipper
+Terminal=false
+Categories=Utility;GTK;
+StartupWMClass=pipper
+Actions=Toggle;Focus;
+
+[Desktop Action Toggle]
+Name=Ligar ou desligar Pipper
+Exec=pipper --toggle
+
+[Desktop Action Focus]
+Name=Ir ao workspace do celular
+Exec=pipper --focus

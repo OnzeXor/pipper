@@ -1,0 +1,21 @@
+{
+  "concept": "Dois contornos de telas conectadas: monitor horizontal e celular vertical. Uma única cor, sem monograma, fundo ou detalhes decorativos.",
+  "tool": "image_gen para exploração; arte final em SVG geométrico nativo, com exportações PNG.",
+  "palette": [
+    "#88C0D0"
+  ],
+  "asset": "pipper.svg",
+  "exports": [
+    16,
+    24,
+    32,
+    48,
+    64,
+    96,
+    128,
+    256,
+    512
+  ],
+  "final_prompt": "Use case: logo-brand. ONE extremely minimalist Linux desktop app icon for Pipper, an app connecting a smartphone as a wireless second monitor. Design only TWO clean geometric rounded rectangular screen outlines: a wide landscape screen on the upper left and a smaller portrait screen overlapping its lower right corner. Let the shared corner subtly join the two screens into one cohesive abstract symbol. Only two rectangles, generous negative space. Consistent medium-bold monoline strokes, perfectly flat solid icy cyan #88C0D0. No letter P, no typography, no device buttons, no speaker slit, no stand, no status dot, no wifi arcs, no background tile, no frame around the icon, no gradients, no shadows, no texture, no 3D, no tiny details, no extra lines. Actual transparent background everywhere outside the two outline shapes. The canvas is square, the symbol is centered and occupies about 75% of the canvas. Crisp, balanced, understated, premium minimalist vector-like geometry, legible at 24px. Deliver a single finished icon, not a mockup or a presentation sheet.",
+  "preview": "pipper.png"
+}

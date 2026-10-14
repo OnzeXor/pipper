@@ -1,0 +1,39 @@
+name: Test and build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:base
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install build and test dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --needed --noconfirm base-devel python-build python-installer python-setuptools python-wheel python-gobject python-cairo gtk4 python-tomlkit wayvnc hyprland desktop-file-utils xorg-server-xvfb xorg-xauth dbus
+          useradd --create-home builder
+          chown -R builder:builder "$GITHUB_WORKSPACE"
+      - name: Build wheel, test installed resources and build Arch package
+        run: |
+          runuser -u builder -- bash -c 'cd "$1" && python3 -m unittest discover -s tests -v && python3 -m build --no-isolation && python3 scripts/verify_install.py dist/*.whl && python3 scripts/build_arch.py --source-archive dist/pipper-*.tar.gz' -- "$GITHUB_WORKSPACE"
+      - name: Verify GTK using simulated sessions
+        run: |
+          runuser -u builder -- bash -c 'cd "$1" && xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo python3 tests/gtk_smoke.py && xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo python3 tests/gtk_lifecycle.py && xvfb-run -a env GDK_BACKEND=x11 GSK_RENDERER=cairo python3 tests/gtk_environments.py' -- "$GITHUB_WORKSPACE"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pipper-packages
+          path: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/arch/*.pkg.tar.zst
+            dist/arch/SHA256SUMS
+          if-no-files-found: error

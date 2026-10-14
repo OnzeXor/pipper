@@ -1,0 +1,10 @@
+include LICENSE README.md CHANGELOG.md CONTRIBUTING.md requirements.txt pipper
+recursive-include src *.py *.css *.json
+recursive-include data *.desktop
+include data/icons/pipper.png data/icons/pipper.svg
+recursive-include data/icons/hicolor *.png *.svg
+recursive-include tests *.py
+recursive-include scripts *.py
+recursive-include docs *.md *.png *.svg
+prune data/icons/previous
+global-exclude __pycache__ *.py[cod] *.bak
