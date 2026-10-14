@@ -11,7 +11,7 @@ from src import __version__
 
 ROOT_FILES = {"README.md", "LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", "pyproject.toml", "MANIFEST.in",
               "requirements.txt", "PKGBUILD", ".SRCINFO", ".gitignore", "pipper"}
-DIRECTORIES = ("src", "data", "docs", "scripts", "tests", ".github")
+DIRECTORIES = ("src", "data", "docs", "scripts", "tests", "packaging", ".github")
 EXCLUDED = {"__pycache__", ".git", ".aws", ".codex", ".agents", "previous"}
 
 

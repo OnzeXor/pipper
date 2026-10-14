@@ -1,0 +1,38 @@
+# Sources pinned to the public upstream revision for version 0.1.0.
+pkgname=pipper
+url='https://github.com/OnzeXor/pipper'
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Use a smartphone as a wireless second monitor on Hyprland'
+arch=('any')
+license=('MIT')
+depends=('python>=3.11' 'python-gobject' 'python-cairo' 'gtk4' 'python-tomlkit' 'wayvnc' 'hyprland>=0.55')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+checkdepends=('desktop-file-utils')
+optdepends=(
+  'python-qrcode: QR code for the VNC connection'
+  'nwg-displays: graphical monitor position editor'
+  'wdisplays: alternative graphical position editor'
+  'kitty: terminal for Hyprmon and custom editors'
+)
+_commit=53ddff964314261cc6cee973b21da74abc52b258
+source=("pipper-${pkgver}-${_commit}.tar.gz::https://codeload.github.com/OnzeXor/pipper/tar.gz/${_commit}")
+sha256sums=('173772542e2812871eb2c95125c4a5f46b0155edd9da773d9cfb067d68ecf83b')
+options=('!debug')
+
+build() {
+  cd "${srcdir}/pipper-${_commit}"
+  python -m build --wheel --no-isolation
+}
+
+check() {
+  cd "${srcdir}/pipper-${_commit}"
+  python -m unittest discover -s tests -v
+  desktop-file-validate data/pipper.desktop
+}
+
+package() {
+  cd "${srcdir}/pipper-${_commit}"
+  python -m installer --destdir="${pkgdir}" --prefix=/usr dist/*.whl
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

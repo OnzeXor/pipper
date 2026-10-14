@@ -4,7 +4,7 @@ recursive-include data *.desktop
 include data/icons/pipper.png data/icons/pipper.svg
 recursive-include data/icons/hicolor *.png *.svg
 recursive-include tests *.py
-recursive-include scripts *.py
-recursive-include docs *.md *.png *.svg
+recursive-include scripts *.py *.sh
+recursive-include docs *.md *.png *.jpg *.jpeg *.svg
 prune data/icons/previous
 global-exclude __pycache__ *.py[cod] *.bak

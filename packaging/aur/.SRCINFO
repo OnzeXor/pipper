@@ -1,0 +1,28 @@
+pkgbase = pipper
+	pkgdesc = Use a smartphone as a wireless second monitor on Hyprland
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/OnzeXor/pipper
+	arch = any
+	license = MIT
+	checkdepends = desktop-file-utils
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python>=3.11
+	depends = python-gobject
+	depends = python-cairo
+	depends = gtk4
+	depends = python-tomlkit
+	depends = wayvnc
+	depends = hyprland>=0.55
+	optdepends = python-qrcode: QR code for the VNC connection
+	optdepends = nwg-displays: graphical monitor position editor
+	optdepends = wdisplays: alternative graphical position editor
+	optdepends = kitty: terminal for Hyprmon and custom editors
+	options = !debug
+	source = pipper-0.1.0-53ddff964314261cc6cee973b21da74abc52b258.tar.gz::https://codeload.github.com/OnzeXor/pipper/tar.gz/53ddff964314261cc6cee973b21da74abc52b258
+	sha256sums = 173772542e2812871eb2c95125c4a5f46b0155edd9da773d9cfb067d68ecf83b
+
+pkgname = pipper
